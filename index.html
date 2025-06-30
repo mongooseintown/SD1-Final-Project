@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD STARTS HERE -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/all.min.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- CUSTOM CSS STYLING STARTS HERE -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: black;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: black;
+    }
+
+    .hover-shadow:hover {
+      box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px,
+        rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(102, 89, 89, 0.09) 0px 16px 8px,
+        rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    }
+
+    .nav-shadow {
+      box-shadow: rgb(28, 28, 28) 4px 4px 4px 0px inset,
+        rgba(0, 0, 0, 0.5) 0px 0px 1px 1px inset;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(to right, #000000, #e74c3c);
+    }
+
+    .glass-morphism {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+      background-image: linear-gradient(120deg,
+          rgba(255, 255, 255, 0.3),
+          rgba(0, 0, 0, 0.2));
+      border: 2px solid white;
+    }
+
+    @media (max-width: 768px) {
+      .vanguard-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .vanguard-description {
+        text-align: center;
+        padding: 1rem;
+      }
+    }
+  </style>
+  <!-- CUSTOM CSS STYLING STARTS HERE -->
+</head>
+<!-- HEAD STARTS HERE -->
+<!-- BODY STARTS HERE -->
+
+<body>
+  <canvas id="bubbleCanvas"></canvas>
+  <!-- HEADER STARTS HERE -->
+  <header class="z-50 border">
+    <div class="relative mx-auto mt-5 z-50 w-[90%]">
+      <!-- NAVBAR STARTS HERE -->
+      <nav
+        class="grid grid-cols-[80%_20%] rounded-xl border bg-slate-300 px-2 nav-shadow md:grid-cols-[10%_50%_10%_10%_20%]">
+
+        <!-- LOGO STARTS HERE -->
+        <div class="grid rounded-xl items-center justify-start md:justify-center">
+          <a href="#" class="grid items-center justify-start md:justify-center rounded-xl">
+            <img src="./assets/webs.png" alt="Logo" class="rounded-xl object-contain
+      w-[50px] sm:w-[60px] md:w-[80px] lg:w-[100px] xl:w-[120px] 2xl:w-[140px] 3xl:w-[160px]" />
+          </a>
+        </div>
+        <!-- LOGO ENDS HERE -->
+
+
+        <!-- MENU ITEMS STARTS HERE -->
+        <div class="hidden md:flex items-center justify-center w-full rounded-xl min-w-0">
+          <ul
+            class="flex flex-wrap justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-6 min-w-0">
+
+            <li class="shrink-0 rounded-xl hover-shadow transition duration-300">
+              <a href="#home" class="grid place-items-center rounded-xl hover:bg-black hover:text-white duration-300
+         px-2 py-1 sm:px-3 sm:py-1 md:px-3.5 md:py-1.5 lg:px-4 lg:py-2
+         text-[0.625rem] sm:text-[0.75rem] md:text-[0.875rem] lg:text-[1rem] xl:text-[1.125rem] 2xl:text-[1.25rem]
+         font-medium text-center">
+                Home
+              </a>
+            </li>
+
+            <li class="shrink-0 rounded-xl hover-shadow transition duration-300">
+              <a href="#about" class="grid place-items-center rounded-xl hover:bg-black hover:text-white duration-300
+         px-2 py-1 sm:px-3 sm:py-1 md:px-3.5 md:py-1.5 lg:px-4 lg:py-2
+         text-[0.625rem] sm:text-[0.75rem] md:text-[0.875rem] lg:text-[1rem] xl:text-[1.125rem] 2xl:text-[1.25rem]
+         font-medium text-center">
+                About
+              </a>
+            </li>
+
+            <li class="shrink-0 rounded-xl hover-shadow transition duration-300">
+              <a href="#services" class="grid place-items-center rounded-xl hover:bg-black hover:text-white duration-300
+         px-2 py-1 sm:px-3 sm:py-1 md:px-3.5 md:py-1.5 lg:px-4 lg:py-2
+         text-[0.625rem] sm:text-[0.75rem] md:text-[0.875rem] lg:text-[1rem] xl:text-[1.125rem] 2xl:text-[1.25rem]
+         font-medium text-center">
+                Services
+              </a>
+            </li>
+
+            <li class="shrink-0 rounded-xl hover-shadow transition duration-300">
+              <a href="#contact" class="grid place-items-center rounded-xl hover:bg-black hover:text-white duration-300
+         px-2 py-1 sm:px-3 sm:py-1 md:px-3.5 md:py-1.5 lg:px-4 lg:py-2
+         text-[0.625rem] sm:text-[0.75rem] md:text-[0.875rem] lg:text-[1rem] xl:text-[1.125rem] 2xl:text-[1.25rem]
+         font-medium text-center">
+                Contact
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <!-- MENU ITEMS ENDS HERE -->
+
+
+        <!-- LANGUAGE SELECTOR STARTS HERE -->
+        <div class="hidden items-center justify-center rounded-xl md:flex">
+          <span class="grid cursor-pointer gradient-bg text-white rounded-xl hover:bg-gray-200
+    text-[0.75rem] md:text-[0.875rem] lg:text-[1rem] xl:text-[1.125rem] 2xl:text-[1.25rem] 3xl:text-[1.375rem]
+    py-2
+    w-full md:w-3/4 lg:w-8/12 xl:w-10/12
+    text-center hover-shadow duration-500">
+            English
+          </span>
+        </div>
+        <!-- LANGUAGE SELECTOR ENDS HERE -->
+
+        <!-- DARK MODE STARTS HERE -->
+        <div class="hidden items-center justify-center rounded-xl md:flex">
+          <span class="grid justify-items-center items-center cursor-pointer gradient-bg text-white rounded-xl hover:bg-gray-200
+    text-[0.75rem] md:text-[0.875rem] lg:text-[1rem] xl:text-[1.125rem] 2xl:text-[1.25rem] 3xl:text-[1.375rem]
+    py-3
+    w-full md:w-3/4 lg:w-8/12 xl:w-10/12 hover-shadow duration-500">
+            <i class="fa-solid fa-moon"></i>
+          </span>
+        </div>
+        <!-- DARK MODE ENDS HERE -->
+
+        <!-- CTA BUTTON STARTS HERE -->
+        <div class="hidden items-center justify-center rounded-xl md:flex">
+          <button
+            class="grid w-9/12 grid-cols-[30%_70%] items-center justify-center rounded-xl border-2 border-dotted border-yellow-400 bg-[url(/assets/1edcb80b31a81a2fb22b5da28a09f3a0.gif)] hover-shadow duration-500">
+            <img src="./assets/join the revolution.jpeg" alt=""
+              class="aspect-square h-full w-full rounded-bl-xl rounded-tl-xl" />
+            <span class="rounded-br-xl rounded-tr-xl font-bold text-white
+      text-[0.5rem]
+      md:text-[0.6rem]
+      lg:text-[0.75rem]
+      xl:text-[0.875rem]
+      2xl:text-[1rem]
+      3xl:text-[1.25rem]">
+              Join The Revolution
+            </span>
+          </button>
+        </div>
+        <!-- CTA BUTTON ENDS HERE -->
+
+        <!-- HAMBURGER OPENNING ICON ONLY FOR MOBILE AND TABLET STARTS HERE -->
+        <div class="grid items-center justify-end rounded-xl border border-transparent md:hidden">
+          <button id="hamburger-btn" class="grid items-center justify-end rounded-br-xl rounded-tr-xl">
+            <span class="grid items-center justify-end text-xl">
+              <i class="fa-solid fa-bars-staggered"></i>
+            </span>
+          </button>
+        </div>
+        <!-- HAMBURGER OPENNING ICON ONLY FOR MOBILE AND TABLET ENDS HERE -->
+      </nav>
+      <!-- NAVBAR ENDS HERE -->
+    </div>
+  </header>
+  <!-- HEADER ENDS HERE -->
+
+  <!-- HAMBURGER MENU FOR MOBILE AND TABLETS STARTS HERE -->
+  <div id="hamburger-menu"
+    class="fixed inset-y-0 right-0 z-50 grid w-4/6 grid-rows-[10%_75%_10%_5%] transform translate-x-full rounded-l-xl border-l border-white/20 bg-white/10 backdrop-blur-md transition-transform duration-300 ease-in-out">
+
+    <!-- HAMBURGER CLOSING ICON STARTS HERE -->
+    <div class="grid justify-items-end rounded-tl-xl border-x border-t p-8">
+      <button id="close-btn" class="cursor-pointer rounded bg-white p-3 border">
+        <i class="fa-solid fa-xmark text-2xl text-red-600"></i>
+      </button>
+    </div>
+    <!-- HAMBURGER CLOSING ICON ENDS HERE -->
+
+    <!-- HAMBURGER MENU ITEMS STARTS HERE -->
+    <div class="grid items-center border-x">
+      <ul>
+        <li class="my-8 mt-0 rounded-xl">
+          <a href="#HOME"
+            class="grid justify-items-center py-4 text-lg font-mono text-white hover:text-yellow-400">Home</a>
+        </li>
+        <li class="my-8 rounded-xl">
+          <a href="#HOME"
+            class="grid justify-items-center py-4 text-lg font-mono text-white hover:text-yellow-400">Home</a>
+        </li>
+        <li class="my-8 rounded-xl">
+          <a href="#HOME"
+            class="grid justify-items-center py-4 text-lg font-mono text-white hover:text-yellow-400">Home</a>
+        </li>
+        <li class="mb-0 my-8 rounded-xl">
+          <a href="#HOME"
+            class="grid justify-items-center py-4 text-lg font-mono text-white hover:text-yellow-400">Home</a>
+        </li>
+      </ul>
+    </div>
+    <!-- HAMBURGER MENU ITEMS ENDS HERE -->
+
+    <!-- HAMBURGER LANGUAGE & THEME SELECTOR STARTS HERE -->
+    <div class="grid items-center border-x px-4">
+      <div class="grid grid-cols-2 gap-2">
+        <button class="rounded bg-gray-200 px-4 py-2 text-black hover:bg-gray-300">বাংলা / English</button>
+        <button class="flex items-center justify-center rounded bg-gray-200 hover:bg-gray-300">
+          <span class="text-xl">
+            <i class="fa-solid fa-moon"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- HAMBURGER LANGUAGE & THEME SELECTOR ENDS HERE -->
+
+    <!-- HAMBURGER COPYRIGHT ALERT STARTS HERE -->
+    <div class="grid justify-items-center items-center rounded-bl-xl border text-xs text-green-500">
+      ©A movement by the people, for the people.
+    </div>
+    <!-- HAMBURGER COPYRIGHT ALERT ENDS HERE -->
+  </div>
+  <!-- HAMBURGER MENU FOR MOBILE AND TABLETS ENDS HERE -->
+
+  <!-- BANNER SECTION STARTS HERE -->
+  <section
+    class="relative flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 2xl:px-40 py-64 sm:py-60 md:py-52 lg:py-48 xl:py-44 text-white border h-screen">
+
+    <!-- Centered Glass Box -->
+    <div
+      class="relative z-10 w-full max-w-[640px] bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-12 lg:py-14 flex flex-col items-center justify-center text-center">
+
+      <h1 class="font-extrabold leading-tight
+      text-[1.75rem]
+      sm:text-[2.25rem]
+      md:text-[2.5rem]
+      lg:text-[2.75rem]
+      xl:text-[3rem]
+      2xl:text-[3.25rem]">
+        Unite for a Transparent Future
+      </h1>
+
+      <p class="mt-4 text-gray-300 font-medium
+      text-sm
+      sm:text-base
+      md:text-lg
+      lg:text-xl
+      2xl:text-2xl">
+        Empowering every voice to stand against corruption.
+      </p>
+
+      <div class="mt-6">
+        <a href="#join" class="inline-block rounded-full bg-red-600 hover:bg-red-700 transition px-6 py-3
+        text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-2xl font-semibold shadow-lg">
+          Join The Movement
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- BANNER SECTION ENDS HERE -->
+
+  <!-- MOTTO SECTION STARTS HERE -->
+  <section class="relative z-10 py-20 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 text-white">
+
+    <div class="max-w-7xl mx-auto">
+
+      <h2 class="text-center text-3xl sm:text-4xl font-bold mb-12">What's Our Motto?</h2>
+
+      <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Card 1 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 md:p-10 rounded-xl text-center min-h-[300px] flex flex-col justify-center items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-user-secret"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Anonymity Above All</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            We protect the identity of every whistleblower. Your voice matters and your privacy is our duty.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 md:p-10 rounded-xl text-center min-h-[300px] flex flex-col justify-center items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-mask"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Unmasking the Shadows</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            We uncover the hidden layers of corruption with vigilance, transparency, and people's power.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 md:p-10 rounded-xl text-center min-h-[300px] flex flex-col justify-center items-center hover:scale-105 transition duration-300 md:col-span-2 md:justify-self-center lg:col-span-1 lg:justify-self-auto">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Accountability Without Fear</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            No act goes unnoticed. We stand together to ensure justice without compromise.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- MOTTO SECTION ENDS HERE -->
+
+  <!-- CORRUPTION RATE SECTION STARTS HERE -->
+  <section
+    class="relative z-10 py-20 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 border h-screen flex items-center">
+    <div class="max-w-7xl mx-auto text-white">
+
+      <h2 class="text-center text-3xl sm:text-4xl font-bold mb-12">
+        Rate of Corruption in BD
+      </h2>
+
+      <div id="corruptionChart" class="max-w-4xl mx-auto rounded-3xl p-6 backdrop-blur-md bg-white/10"
+        style="min-height: 400px;"></div>
+
+    </div>
+  </section>
+  <!-- CORRUPTION RATE SECTION ENDS HERE -->
+
+  <!-- HOW IT WORKS SECTION STARTS HERE -->
+  <section
+    class="relative z-10 py-20 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 text-white h-screen flex items-center border">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-center text-3xl sm:text-4xl font-bold mb-12">How It Works</h2>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Step 1 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-file-circle-plus"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">1. Submit Complaint</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            Use our secure, anonymous platform to submit details about corruption.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">2. We Verify</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            Our trusted agents verify the complaint and ensure it meets safety criteria.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300 sm:col-span-2 lg:col-span-1 lg:justify-self-center">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">3. Take Action</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            The case is made public or sent to relevant bodies to take immediate action.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- HOW IT WORKS SECTION ENDS HERE -->
+
+  <!-- WHY TRUST US SECTION STARTS HERE -->
+  <section
+    class="relative z-10 py-20 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 text-white h-screen flex items-center border">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-center text-3xl sm:text-4xl font-bold mb-12">Why Trust Us</h2>
+
+      <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-2">
+
+        <!-- Feature 1 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Military-Grade Encryption</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            Your data is safe with our end-to-end encrypted complaint submission system.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-eye-slash"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Guaranteed Anonymity</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            We never reveal your identity — even we can’t see who you are.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-users-gear"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Trusted Moderators</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            Our community and team carefully handle all data with neutrality and ethics.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div
+          class="glass-morphism p-6 sm:p-8 rounded-xl text-center flex flex-col items-center hover:scale-105 transition duration-300">
+          <div class="text-4xl mb-4 text-yellow-300">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Transparency Dashboard</h3>
+          <p class="text-sm sm:text-base text-gray-200">
+            View real-time updates on complaints, resolutions, and progress.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!--  -->
+  <!-- WHY TRUST US SECTION ENDS HERE -->
+
+  <!-- LIVE STATISTICS SECTION STARTS HERE -->
+  <section class="relative z-10 py-20 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 text-white">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-12">Live Statistics</h2>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <div
+          class="glass-morphism p-6 rounded-xl flex flex-col justify-center items-center hover:scale-105 transition duration-300">
+          <div class="text-5xl font-extrabold text-yellow-400" id="complaintsCount">250+</div>
+          <p class="mt-2 text-sm sm:text-base text-gray-200">Complaints Submitted</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="glass-morphism p-6 rounded-xl flex flex-col justify-center items-center hover:scale-105 transition duration-300">
+          <div class="text-5xl font-extrabold text-yellow-400" id="investigationsCount">87</div>
+          <p class="mt-2 text-sm sm:text-base text-gray-200">Investigations Underway</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="glass-morphism p-6 rounded-xl flex flex-col justify-center items-center hover:scale-105 transition duration-300">
+          <div class="text-5xl font-extrabold text-yellow-400" id="exposedCount">12</div>
+          <p class="mt-2 text-sm sm:text-base text-gray-200">Exposed Cases</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- LIVE STATISTICS SECTION ENDS HERE -->
+
+  <section class="vanguard-section py-20 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
+    <!-- Section Heading -->
+    <h2 class="text-center text-3xl sm:text-4xl font-bold text-white mb-12">
+      Voices from the Vanguard
+    </h2>
+
+    <!-- Swiper + Summary Layout -->
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-16 w-full max-w-7xl mx-auto">
+
+      <!-- Swiper Slider -->
+      <div class="swiper mySwiper w-full lg:w-1/2 h-96 sm:h-[420px] md:h-[460px]">
+        <div class="swiper-wrapper h-full">
+          <div class="swiper-slide bg-white rounded-xl flex p-4 space-x-4 h-full">
+            <div
+              class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-bold text-gray-500">
+              A1
+            </div>
+            <div class="flex flex-col justify-center text-gray-800 font-semibold text-base">
+              <p>Agent 1's review: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                incididunt.</p>
+            </div>
+          </div>
+
+          <!-- Repeat other slides similarly... -->
+          <div class="swiper-slide bg-white rounded-xl flex p-4 space-x-4 h-full">
+            <div
+              class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-bold text-gray-500">
+              A2
+            </div>
+            <div class="flex flex-col justify-center text-gray-800 font-semibold text-base">
+              <p>Agent 2's review: Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            </div>
+          </div>
+          <!-- Add more slides as needed -->
+          <div class="swiper-slide bg-white rounded-xl flex p-4 space-x-4 h-full">
+            <div
+              class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-bold text-gray-500">
+              A2
+            </div>
+            <div class="flex flex-col justify-center text-gray-800 font-semibold text-base">
+              <p>Agent 2's review: Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide bg-white rounded-xl flex p-4 space-x-4 h-full">
+            <div
+              class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-bold text-gray-500">
+              A2
+            </div>
+            <div class="flex flex-col justify-center text-gray-800 font-semibold text-base">
+              <p>Agent 2's review: Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            </div>
+          </div>
+
+          <div class="swiper-slide bg-white rounded-xl flex p-4 space-x-4 h-full">
+            <div
+              class="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-3xl font-bold text-gray-500">
+              A2
+            </div>
+            <div class="flex flex-col justify-center text-gray-800 font-semibold text-base">
+              <p>Agent 2's review: Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Summary with Glassmorphism -->
+      <div class="glass-morphism w-full lg:w-1/2 text-white text-center lg:text-left p-6 rounded-xl border border-white/20 backdrop-blur-md bg-white/10
+       h-96 sm:h-[420px] md:h-[460px] flex flex-col justify-center">
+        <h3 class="text-4xl font-extrabold mb-6">Real Voices, Real Change</h3>
+        <p class="text-gray-300 leading-relaxed text-base sm:text-lg">
+          Hear from our dedicated field agents—ordinary people courageously fighting corruption.
+          Every story is anonymous, genuine, and helps build a fairer future for all.
+        </p>
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- JS -->
+  <script src="./js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- <script src="./js/app.js"></script> -->
+  <script>
+    // HAMBURGER MENU INTERACTIVITY WHILE IN MOBILE AND TABLET
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const closeBtn = document.getElementById('close-btn');
+
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerMenu.classList.remove('translate-x-full');
+      hamburgerMenu.classList.add('translate-x-0');
+      document.body.classList.add('overflow-hidden');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      hamburgerMenu.classList.remove('translate-x-0');
+      hamburgerMenu.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+    });
+
+    document.addEventListener('click', function (event) {
+      const isClickInsideMenu = hamburgerMenu.contains(event.target);
+      const isClickOnButton = hamburgerBtn.contains(event.target);
+
+      if (!isClickInsideMenu && !isClickOnButton) {
+        hamburgerMenu.classList.remove('translate-x-0');
+        hamburgerMenu.classList.add('translate-x-full');
+        document.body.classList.remove('overflow-hidden');
+      }
+    });
+    // HAMBURGER MENU INTERACTIVITY WHILE IN MOBILE AND TABLET
+
+    // CANVAS ANIMATION
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('bubbleCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Set canvas to full window size
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+
+      const particles = [];
+      const particleCount = 100;
+      const mouse = { x: null, y: null, radius: 100 };
+
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+      });
+
+
+
+      window.addEventListener('touchmove', (e) => {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      });
+
+
+      window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 5 + 1;
+          this.density = Math.random() * 30 + 1;
+          this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+          this.baseX = this.x;
+          this.baseY = this.y;
+          this.velocity = Math.random() * 0.2 - 0.1;
+          this.angle = 0;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+
+        update() {
+          // Move particles in circular motion
+          this.angle += this.velocity;
+          this.baseX += Math.cos(this.angle) * 0.5;
+          this.baseY += Math.sin(this.angle) * 0.5;
+
+          // Collision detection with mouse
+          if (mouse.x && mouse.y) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouse.radius) {
+              const forceDirectionX = dx / distance;
+              const forceDirectionY = dy / distance;
+              const force = (mouse.radius - distance) / mouse.radius * 2;
+
+              this.x -= forceDirectionX * force * this.density;
+              this.y -= forceDirectionY * force * this.density;
+            } else {
+              // Return to base position
+              if (this.x !== this.baseX) {
+                const dx = this.x - this.baseX;
+                this.x -= dx / 10;
+              }
+              if (this.y !== this.baseY) {
+                const dy = this.y - this.baseY;
+                this.y -= dy / 10;
+              }
+            }
+          } else {
+            // Return to base position when mouse is not hovering
+            if (this.x !== this.baseX) {
+              const dx = this.x - this.baseX;
+              this.x -= dx / 10;
+            }
+            if (this.y !== this.baseY) {
+              const dy = this.y - this.baseY;
+              this.y -= dy / 10;
+            }
+          }
+
+          this.draw();
+        }
+      }
+
+      // Create particles
+      function init() {
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      // Animation loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+        }
+
+        // Draw connection lines between close particles
+        connect();
+
+        requestAnimationFrame(animate);
+      }
+
+      // Connect particles with lines
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+              ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      init();
+      animate();
+    });
+    // CANVAS ANIMATION
+
+    const options = {
+      chart: {
+        type: 'radar',
+        height: '100%',
+        toolbar: { show: false },
+        background: 'transparent',
+      },
+      series: [{
+        name: 'CPI Score',
+        data: [27, 25, 21, 18, 20, 23]
+      }],
+      stroke: {
+        width: 3,
+        colors: ['#FFD700'] // Gold-ish line
+      },
+      fill: {
+        opacity: 0.25,
+        colors: ['#FFD700']
+      },
+      markers: {
+        size: 5,
+        colors: ['#FFD700'],
+        strokeColor: '#fff',
+        strokeWidth: 2,
+      },
+      labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+      yaxis: {
+        max: 30,
+        min: 0,
+        tickAmount: 6,
+        show: true,
+        labels: {
+          style: { colors: '#fff' }
+        }
+      },
+      xaxis: {
+        labels: {
+          style: { colors: '#fff' }
+        }
+      },
+      tooltip: {
+        theme: 'dark',
+        style: {
+          fontSize: '14px'
+        }
+      },
+      legend: {
+        labels: {
+          colors: '#fff',
+          useSeriesColors: false
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 640,
+          options: {
+            chart: {
+              height: 350,
+            },
+          }
+        }
+      ]
+    };
+
+    const chart = new ApexCharts(document.querySelector("#corruptionChart"), options);
+    chart.render();
+
+    const counters = [
+      { id: "complaintsCount", end: 250 },
+      { id: "investigationsCount", end: 87 },
+      { id: "exposedCount", end: 12 },
+    ];
+
+    counters.forEach(counter => {
+      const el = document.getElementById(counter.id);
+      let count = 0;
+      const update = () => {
+        if (count < counter.end) {
+          count += Math.ceil(counter.end / 50);
+          if (count > counter.end) count = counter.end;
+          el.innerText = count + "+";
+          requestAnimationFrame(update);
+        }
+      };
+      update();
+    });
+
+    const swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+    });
+  </script>
+</body>
+<!-- BODY ENDS HERE -->
+
+</html>
